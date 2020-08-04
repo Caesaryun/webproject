@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_3_0.xsd" id="WebApp_ID" version="3.0">
+  <display-name>AOrderSystem</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+      <welcome-file>default.jsp</welcome-file>
+     </welcome-file-list>
+  
+  
+    <servlet>
+    <servlet-name>signservlet</servlet-name>
+    <servlet-class>com.denglu.signservlet</servlet-class>
+    
+   </servlet>
+   
+   <servlet-mapping>
+    <servlet-name>signservlet</servlet-name>
+    <!-- 访问的网址 -->
+    <url-pattern>/AOrderSystem/signservlet</url-pattern>
+   
+   </servlet-mapping>
+  
+  
+  
+   <filter>
+  <filter-name>loginFilter</filter-name>
+  <filter-class>com.Filter.loginFilter</filter-class>
+  </filter>
+    <!-- 该customer目录下的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>loginFilter</filter-name>
+   <url-pattern>/customer/*</url-pattern>
+   </filter-mapping>
+  
+  
+   
+    <!-- 该的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>loginFilter</filter-name>
+   <url-pattern></url-pattern>
+   </filter-mapping>
+   
+   
+   <!-- 这里则是map的filter -->
+    <servlet>
+    <servlet-name>mapservlet</servlet-name>
+    <servlet-class>com.Filter.mapservlet</servlet-class>
+    
+   </servlet>
+   
+   <servlet-mapping>
+    <servlet-name>mapservlet</servlet-name>
+    <!-- 访问的网址 -->
+    <url-pattern>/AOrderSystem/mapservlet</url-pattern>
+   
+   </servlet-mapping>
+   
+   <filter>
+  <filter-name>mapFilter</filter-name>
+  <filter-class>com.Filter.mapFilter</filter-class>
+  </filter>
+    <!-- 该other目录下的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>mapFilter</filter-name>
+   <url-pattern>/other/*</url-pattern>
+   </filter-mapping>
+  
+   
+   <session-config>
+   <session-timeout>60</session-timeout>
+   </session-config>
+   
+   
+   
+    <servlet>
+    <servlet-name>shoplogin</servlet-name>
+    <servlet-class>com.Filter.shoplogin</servlet-class>
+    
+   </servlet>
+   
+   
+   <!-- 访问这个shop下的页面都需要经过这个filter进行验证 -->
+   
+   <servlet-mapping>
+    <servlet-name>shoplogin</servlet-name>
+    <!-- 访问的网址 -->
+    <url-pattern>/AOrderSystem/shoplogin</url-pattern>
+   
+   </servlet-mapping>
+   
+    <filter>
+  <filter-name>shoploginfilter</filter-name>
+  <filter-class>com.Filter.shoploginfilter</filter-class>
+  </filter>
+    <!-- 该other目录下的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>shoploginfilter</filter-name>
+   <url-pattern>/shop/*</url-pattern>
+   </filter-mapping>
+   
+   
+    <filter>
+  <filter-name>foodfyFilter</filter-name>
+  <filter-class>com.shopcz.foodfyFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>foodfyFilter</filter-name>
+   <url-pattern>/shop/lookfood.jsp/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+   
+     <filter>
+  <filter-name>orderFilter</filter-name>
+  <filter-class>com.shopcz.orderFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+  <filter-mapping> 
+   <filter-name>orderFilter</filter-name>
+   <url-pattern>/shop/insureorder.jsp/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+   
+   
+   
+   <!-- 该店员页面下经过过滤 -->
+    
+     <filter>
+  <filter-name>insureorderFilter</filter-name>
+  <filter-class>com.assitantshop.insureorderFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+ 
+   <filter-mapping> 
+   <filter-name>insureorderFilter</filter-name>
+   <url-pattern>/shopassitant/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+    
+   
+     <filter>
+  <filter-name>sailorderFilter</filter-name>
+  <filter-class>com.shopcz.sailorderFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+ 
+   <filter-mapping> 
+   <filter-name>sailorderFilter</filter-name>
+   <url-pattern>/shop/foodsales.jsp/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+   
+ 
+     <filter>
+  <filter-name>gukeorderFilter</filter-name>
+  <filter-class>com.orderpack.gukeorderFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+ 
+   <filter-mapping> 
+   <filter-name>gukeorderFilter</filter-name>
+   <url-pattern>/customer/orderstate.jsp/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+   
+  
+      <filter>
+  <filter-name>orderallFilter</filter-name>
+  <filter-class>com.shopcz.orderallFilter</filter-class>
+  </filter>
+    <!-- 该shop下的文件都需要先执行一下得到，预先加载的数据，food目录下的文件都需要过滤 -->
+ 
+   <filter-mapping> 
+   <filter-name>orderallFilter</filter-name>
+   <url-pattern>/shop/allorders.jsp/*</url-pattern>   <!-- 指定这个jsp需要过滤 -->
+   </filter-mapping>
+   
+     
+   
+   
+   
+   
+</web-app>
